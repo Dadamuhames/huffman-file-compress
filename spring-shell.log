@@ -1,0 +1,8 @@
+1726578701817:start
+1726578719238:help
+1726578845892:script
+1726578860964:script --file .gitignore
+1726579339433:help
+1726579361127:compress --file=file.txt
+1726579372669:compress --file file.txt
+1726579974762:quit
