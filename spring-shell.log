@@ -6,3 +6,71 @@
 1726579361127:compress --file=file.txt
 1726579372669:compress --file file.txt
 1726579974762:quit
+1726582473008:help
+1726582544796:quit
+1726582607212:help
+1726582695277:compress
+1726582721274:quit
+1726582744418:help
+1726582753739:compress
+1726582760030:compress --file some.txt
+1726583083084:quit
+1726583113551:compress
+1726583119240:compress --file file.txt
+1726583371661:quit
+1726583418792:compress
+1726583422240:compress --file some
+1726584794192:quit
+1726584820459:compress
+1726584823740:compress --file some
+1726584852279:compress
+1726584858058:compress --file some
+1726584956333:quit
+1726585008059:compress --file soe
+1726585177417:quit
+1726593637815:compress
+1726594006694:quit
+1726594064631:compress --file dasd
+1726594150866:compress --file test.txt
+1726594604752:quit
+1726594644766:compress --file test.txt
+1726595083248:quit
+1726595105978:compress --file test.txt
+1726595223152:quit
+1726595254703:compress --file test.txt
+1726595319333:quit
+1726595341003:compress --file test.txt
+1726595494192:quit
+1726595516565:compress --file test.txt
+1726595651487:quit
+1726595672024:compress --file test.txt
+1726595997515:quit
+1726596027274:compress --file test.txt
+1726596076446:q
+1726596077830:quit
+1726596112814:compress --file test.txt
+1726596283951:compress --file test.hmtl
+1726596286486:compress --file test.html
+1726596301671:help
+1726596456711:quit
+1726596481780:compress --file test.html
+1726596483835:compress --file test.htmls
+1726596489711:compress --file test.html
+1726596635284:quit
+1726596656458:compress --file test.htmls
+1726596657799:compress --file test.html
+1726596705368:quit
+1726596724333:compress --file test.html
+1726596932367:compress --file test_files/test.html
+1726597010560:quit
+1726597030364:compress --file test_files/test.html
+1726597044624:compress --file /test_files/test.html
+1726597055084:compress --file test_files/test.html
+1726597062195:compress --file /test_files/test.html
+1726597116068:quit
+1726597138477:compress --file test_files/test.html
+1726597174492:quit
+1726597193552:compress --file test_files/test.html
+1726597440744:compress --file test_files/test.txt
+1726597453926:compress --file test_files/test2.txt
+1726597456252:quit

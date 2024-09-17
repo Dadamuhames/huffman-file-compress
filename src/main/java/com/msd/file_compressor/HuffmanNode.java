@@ -1,4 +1,4 @@
-package com.msd.file_compressor.utils;
+package com.msd.file_compressor;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

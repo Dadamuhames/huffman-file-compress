@@ -1,6 +1,6 @@
 package com.msd.file_compressor.service;
 
-import com.msd.file_compressor.utils.HuffmanNode;
+import com.msd.file_compressor.HuffmanNode;
 import java.math.BigInteger;
 import java.util.*;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class HuffmanEncodeService {
   private final HuffmanTreeEncodeService huffmanTreeEncodeService;
 
-  public List<Byte> encode(final String text) {
+  public byte[] encode(final String text) {
     Map<Character, Integer> charFrequencies = fillFrequencies(text);
 
     return encodeToBytes(text, charFrequencies);
@@ -62,7 +62,7 @@ public class HuffmanEncodeService {
     return queue.poll();
   }
 
-  public List<Byte> encodeToBytes(final String text, final Map<Character, Integer> chars) {
+  public byte[] encodeToBytes(final String text, final Map<Character, Integer> chars) {
     HuffmanNode root = getTree(chars);
 
     Map<Character, String> huffmanCodes = getHuffmanCodes(root, "");
@@ -88,15 +88,25 @@ public class HuffmanEncodeService {
     byte[] treeLengthInBytes = BigInteger.valueOf(treeLength).toByteArray();
     byte[] dataLengthInBytes = BigInteger.valueOf(dataLength).toByteArray();
 
+    for (byte b : treeLengthInBytes) dataInBytes.add(b);
+
     for (byte b : new byte[4 - treeLengthInBytes.length]) dataInBytes.add(b);
+
+    for (byte b : dataLengthInBytes) dataInBytes.add(b);
 
     for (byte b : new byte[4 - dataLengthInBytes.length]) dataInBytes.add(b);
 
-    for (byte b : textAsBytes) dataInBytes.add(b);
+    for (byte b : treeAsBytes) dataInBytes.add(b);
 
     for (byte b : textAsBytes) dataInBytes.add(b);
 
-    return dataInBytes;
+    byte[] bytesArray = new byte[dataInBytes.size()];
+
+    for (int i = 0; i < dataInBytes.size(); i++) {
+      bytesArray[i] = dataInBytes.get(i);
+    }
+
+    return bytesArray;
   }
 
   public byte[] getEncodedBytes(final String encodedString) {

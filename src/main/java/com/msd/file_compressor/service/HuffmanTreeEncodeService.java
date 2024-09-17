@@ -1,6 +1,6 @@
 package com.msd.file_compressor.service;
 
-import com.msd.file_compressor.utils.HuffmanNode;
+import com.msd.file_compressor.HuffmanNode;
 import org.springframework.stereotype.Service;
 
 

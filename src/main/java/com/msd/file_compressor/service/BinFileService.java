@@ -3,13 +3,14 @@ package com.msd.file_compressor.service;
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BinFileService {
-  public String readFile(final String filePath) throws IOException {
-    try (FileReader fileReader = new FileReader(filePath, StandardCharsets.UTF_8);
+  public String readFile(final File file) throws IOException {
+    try (FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
       StringBuilder stringBuilder = new StringBuilder();
@@ -87,19 +88,24 @@ public class BinFileService {
     return binString;
   }
 
-  public String writeBinaryFile(final List<Byte> bytesToWrite) throws IOException {
+  public File writeBinaryFile(final byte[] bytesToWrite) throws IOException {
     String now = String.valueOf(System.currentTimeMillis()).replace(".", "");
 
-    String fileName = String.format("%s.bin", now);
+    String fileName = String.format("test_files/compressed/%s.bin", now);
+
+    File dir = new File("test_files/compressed/");
+
+    File file = new File(fileName);
+
+
+    if (!dir.exists()) FileUtils.createParentDirectories(file);
 
     try (OutputStream outputStream = new FileOutputStream(fileName);
         DataOutputStream dos = new DataOutputStream(outputStream)) {
 
-      for (Byte byt : bytesToWrite) {
-        dos.writeByte(byt);
-      }
+      dos.write(bytesToWrite);
 
-      return fileName;
+      return new File(fileName);
     }
   }
 }
