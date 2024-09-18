@@ -3,15 +3,12 @@ package com.msd.file_compressor.service;
 import com.msd.file_compressor.HuffmanNode;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class HuffmanTreeEncodeService {
-  private StringBuilder encodedTree = new StringBuilder();
+  private final StringBuilder encodedTree = new StringBuilder();
 
   public String encodeTree(final HuffmanNode root) {
-    encodedTree = new StringBuilder();
     encodeTreeRecursive(root);
-
     return encodedTree.toString();
   }
 

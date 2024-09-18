@@ -88,16 +88,18 @@ public class HuffmanEncodeService {
     byte[] treeLengthInBytes = BigInteger.valueOf(treeLength).toByteArray();
     byte[] dataLengthInBytes = BigInteger.valueOf(dataLength).toByteArray();
 
+    // write tree len in 4 bytes
+    for (byte b : new byte[4 - treeLengthInBytes.length]) dataInBytes.add(b);
     for (byte b : treeLengthInBytes) dataInBytes.add(b);
 
-    for (byte b : new byte[4 - treeLengthInBytes.length]) dataInBytes.add(b);
-
+    // write data len in 4 bytes
+    for (byte b : new byte[4 - dataLengthInBytes.length]) dataInBytes.add(b);
     for (byte b : dataLengthInBytes) dataInBytes.add(b);
 
-    for (byte b : new byte[4 - dataLengthInBytes.length]) dataInBytes.add(b);
-
+    // write tree
     for (byte b : treeAsBytes) dataInBytes.add(b);
 
+    // write data
     for (byte b : textAsBytes) dataInBytes.add(b);
 
     byte[] bytesArray = new byte[dataInBytes.size()];

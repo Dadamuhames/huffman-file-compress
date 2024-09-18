@@ -4,6 +4,7 @@ import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 
+import com.msd.file_compressor.AnsiConstants;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +26,10 @@ public class BinFileService {
     }
   }
 
-  public String readBinaryFile(final String filePath) throws IOException {
+  public String readBinaryFile(final File file) throws IOException {
     StringBuilder builder = new StringBuilder();
 
-    try (InputStream inputStream = new FileInputStream(filePath)) {
+    try (InputStream inputStream = new FileInputStream(file)) {
       int data;
 
       int treeEndAt = inputStream.read();
@@ -91,21 +92,38 @@ public class BinFileService {
   public File writeBinaryFile(final byte[] bytesToWrite) throws IOException {
     String now = String.valueOf(System.currentTimeMillis()).replace(".", "");
 
-    String fileName = String.format("test_files/compressed/%s.bin", now);
+    String fileName = String.format("output_files/compressed/%s.bin", now);
 
-    File dir = new File("test_files/compressed/");
+    File dir = new File("output_files/compressed/");
 
     File file = new File(fileName);
 
-
     if (!dir.exists()) FileUtils.createParentDirectories(file);
 
-    try (OutputStream outputStream = new FileOutputStream(fileName);
+    try (OutputStream outputStream = new FileOutputStream(file);
         DataOutputStream dos = new DataOutputStream(outputStream)) {
 
       dos.write(bytesToWrite);
-
-      return new File(fileName);
     }
+
+    return file;
+  }
+
+  public File writeFile(final String text) throws IOException {
+    String now = String.valueOf(System.currentTimeMillis()).replace(".", "");
+
+    String fileName = String.format("output_files/decompressed/%s.txt", now);
+
+    File dir = new File("output_files/decompressed/");
+
+    File file = new File(fileName);
+
+    if (!dir.exists()) FileUtils.createParentDirectories(file);
+
+    try (FileWriter fileWriter = new FileWriter(file, StandardCharsets.UTF_8)) {
+      fileWriter.write(text);
+    }
+
+    return file;
   }
 }
